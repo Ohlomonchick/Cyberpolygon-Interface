@@ -20,5 +20,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
+    path('cyberpolygon/', include(('interface.urls', 'interface'), namespace='interface')),
     path('admin/', admin.site.urls),
 ]
