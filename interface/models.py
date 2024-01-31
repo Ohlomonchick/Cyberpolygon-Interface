@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django_summernote.models import AbstractAttachment
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 
 class Lab(models.Model):
@@ -17,6 +18,11 @@ class Lab(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Lab, self).save(*args, **kwargs)
+
+
+class Answers(models.Model):
+    lab = models.ForeignKey(Lab, related_name="lab", on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class MyAttachment(AbstractAttachment):
