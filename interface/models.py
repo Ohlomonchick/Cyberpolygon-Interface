@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from django_summernote.models import AbstractAttachment
+
 
 class Lab(models.Model):
     name = models.CharField('Имя', max_length=255, primary_key=True)
@@ -14,4 +16,10 @@ class Lab(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Lab, self).save(*args, **kwargs)
+
+
+class MyAttachment(AbstractAttachment):
+    class Meta:
+        verbose_name = 'Прикрепленный файл'
+        verbose_name_plural = 'Прикрепленные файлы'
 

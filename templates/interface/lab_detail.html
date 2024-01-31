@@ -4,7 +4,7 @@
 {% block content %}
 <div class="box">
     <h1 class="title is-2">{{ object.name }}</h1>
-    <p>{{ object.description }}</p>
+    <p>{{ object.description | safe  }}</p>
     {% if submitted %}
         <div class="notification is-success">Вы выполнили работу!</div>
     {% else %}
