@@ -1,4 +1,5 @@
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 from interface.models import Lab
 from interface.forms import LabAnswerForm
@@ -19,4 +20,10 @@ class LabDetailView(DetailView):
                 context["form"].fields["answer_flag"].label = "Неверный флаг!"
 
         return context
+
+
+class LabListView(ListView):
+    model = Lab
+
+
 

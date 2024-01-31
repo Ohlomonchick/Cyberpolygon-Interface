@@ -25,6 +25,7 @@ urlpatterns = [
     path('cyberpolygon/', include(('interface.urls', 'interface'), namespace='interface')),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 if settings.DEBUG:
