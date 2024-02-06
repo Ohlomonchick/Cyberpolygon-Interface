@@ -11,6 +11,9 @@ class Lab(models.Model):
     answer_flag = models.CharField('Ответный флаг', max_length=1024, null=True)
     slug = models.SlugField('Название в адресной строке', unique=True)
 
+    def __str__(self):
+        return str(self.name)
+
     class Meta:
         verbose_name = 'Лабораторная работа'
         verbose_name_plural = 'Лабораторные работы'
@@ -25,6 +28,21 @@ class Answers(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
+class Platoon(models.Model):
+    number = models.fields.IntegerField('Номер взвода')
+
+    def __str__(self):
+        return str(self.number)
+
+    @classmethod
+    def get_default_platoon(cls):
+        return Platoon.objects.get_or_create(number=0)[0].id
+
+    class Meta:
+        verbose_name = 'Взвод'
+        verbose_name_plural = 'Взвода'
+
+
 class MyAttachment(AbstractAttachment):
     class Meta:
         verbose_name = 'Прикрепленный файл'
@@ -34,7 +52,7 @@ class MyAttachment(AbstractAttachment):
 class User(AbstractUser):
     name = models.CharField('Имя', max_length=127, null=True)
     second_name = models.CharField('Фамилия', max_length=127, null=True)
-    platoon = models.CharField('Взвод', max_length=127, null=True)
+    platoon = models.ForeignKey(Platoon, related_name="students", on_delete=models.CASCADE, default=Platoon.get_default_platoon)
 
     class Meta:
         verbose_name = 'Пользователь'

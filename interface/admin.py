@@ -10,4 +10,5 @@ class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
 
 
 admin.site.register(Lab, SomeModelAdmin)
+admin.site.register(Platoon, admin.ModelAdmin)
 admin.site.register(User, UserAdmin)
