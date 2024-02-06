@@ -52,7 +52,11 @@ class MyAttachment(AbstractAttachment):
 class User(AbstractUser):
     name = models.CharField('Имя', max_length=127, null=True)
     second_name = models.CharField('Фамилия', max_length=127, null=True)
-    platoon = models.ForeignKey(Platoon, related_name="students", on_delete=models.CASCADE, default=Platoon.get_default_platoon)
+    platoon = models.ForeignKey(Platoon,
+                                related_name="students",
+                                on_delete=models.CASCADE,
+                                default=Platoon.get_default_platoon,
+                                verbose_name="взвод")
 
     class Meta:
         verbose_name = 'Пользователь'

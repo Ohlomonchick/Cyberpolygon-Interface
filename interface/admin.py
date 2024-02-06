@@ -9,6 +9,13 @@ class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     summernote_fields = '__all__'
 
 
+class MyUserAdmin(UserAdmin):
+    list_display = ("username", "is_staff", "platoon")
+    list_filter = ("is_staff", "platoon")
+
+    search_fields = ("platoon",)
+
+
 admin.site.register(Lab, SomeModelAdmin)
 admin.site.register(Platoon, admin.ModelAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, MyUserAdmin)
