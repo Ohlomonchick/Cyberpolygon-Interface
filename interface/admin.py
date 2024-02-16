@@ -11,6 +11,9 @@ class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
 
 class MyUserAdmin(UserAdmin):
     list_display = ("username", "is_staff", "platoon")
+    fieldsets = UserAdmin.fieldsets + (
+            (None, {'fields': ('platoon',)}),
+    )
     list_filter = ("is_staff", "platoon")
 
     search_fields = ("platoon",)
