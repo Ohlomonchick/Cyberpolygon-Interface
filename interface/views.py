@@ -42,9 +42,9 @@ def registration(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         platoon = int(request.POST.get('platoon'))
-        if not Platoon.objects.filter(number = platoon).exists():
-            Platoon.objects.create(number = platoon)
-        platoon = Platoon.objects.get(number = platoon)
+        if not Platoon.objects.filter(id = platoon).exists():
+            Platoon.objects.create(id = platoon)
+        platoon = Platoon.objects.get(id = platoon)
         form.platoon = platoon
         if form.is_valid():
             usname = request.POST.get('name') + " " + request.POST.get('second_name')
